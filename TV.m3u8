@@ -1,34 +1,43 @@
 #EXTM3U
 
-#EXTINF:-1 tvg-id="CCTV1" tvg-name="CCTV1" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV1.png" group-title="•央視「Relay」",CCTV 1 綜合「Relay」
-https://cdn.19891230.eu.org/api/CCTV1/index.m3u8
-#EXTINF:-1 tvg-id="CCTV2" tvg-name="CCTV2" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV2.png" group-title="•央視「Relay」",CCTV 2 財經「Relay」
-https://cdn.19891230.eu.org/api/CCTV2/index.m3u8
-#EXTINF:-1 tvg-id="CCTV3" tvg-name="CCTV3" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV3.png" group-title="•央視「Relay」",CCTV 3 綜藝「Relay」
-https://cdn.19891230.eu.org/api/CCTV3/index.m3u8
-#EXTINF:-1 tvg-id="CCTV4" tvg-name="CCTV4" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV4.png" group-title="•央視「Relay」",CCTV 4 中文國際「Relay」
-https://cdn.19891230.eu.org/api/CCTV4/index.m3u8
-#EXTINF:-1 tvg-id="CCTV5" tvg-name="CCTV5" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV5.png" group-title="•央視「Relay」",CCTV 5 體育「Relay」
-https://cdn.19891230.eu.org/api/CCTV5/index.m3u8
-#EXTINF:-1 tvg-id="CCTV5+" tvg-name="CCTV5+" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV5+.png" group-title="•央視「Relay」",CCTV 5+ 體育賽事「Relay」
-https://cdn.19891230.eu.org/api/CCTV5+/index.m3u8
-#EXTINF:-1 tvg-id="CCTV6" tvg-name="CCTV6" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV6.png" group-title="•央視「Relay」",CCTV 6 電影「Relay」
-https://cdn.19891230.eu.org/api/CCTV6/index.m3u8
-#EXTINF:-1 tvg-id="CCTV7" tvg-name="CCTV7" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV7.png" group-title="•央視「Relay」",CCTV 7 國防軍事「Relay」
-https://cdn.19891230.eu.org/api/CCTV7/index.m3u8
-#EXTINF:-1 tvg-id="CCTV8" tvg-name="CCTV8" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV8.png" group-title="•央視「Relay」",CCTV 8 電視劇「Relay」
-https://cdn.19891230.eu.org/api/CCTV8/index.m3u8
-#EXTINF:-1 tvg-id="CCTV9" tvg-name="CCTV9" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV9.png" group-title="•央視「Relay」",CCTV 9 記錄「Relay」
-https://cdn.19891230.eu.org/api/CCTV9/index.m3u8
-#EXTINF:-1 tvg-id="CCTV10" tvg-name="CCTV10" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV10.png" group-title="•央視「Relay」",CCTV 10 科教「Relay」
-https://cdn.19891230.eu.org/api/CCTV10/index.m3u8
-#EXTINF:-1 tvg-id="CCTV11" tvg-name="CCTV11" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV11.png" group-title="•央視「Relay」",CCTV 11 戲曲「Relay」
-https://cdn.19891230.eu.org/api/CCTV11/index.m3u8
-#EXTINF:-1 tvg-id="CCTV12" tvg-name="CCTV12" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV12.png" group-title="•央視「Relay」",CCTV 12 社會與法「Relay」
-https://cdn.19891230.eu.org/api/CCTV12/index.m3u8
-#EXTINF:-1 tvg-id="CCTV13" tvg-name="CCTV13" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV13.png" group-title="•央視「Relay」",CCTV 13 新聞「Relay」
-https://cdn.19891230.eu.org/api/CCTV13/index.m3u8
-#EXTINF:-1 tvg-id="CCTV14" tvg-name="CCTV14" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV14.png" group-title="•央視「Relay」",CCTV 14 少兒「Relay」
-https://cdn.19891230.eu.org/api/CCTV14/index.m3u8
-#EXTINF:-1 tvg-id="CCTV15" tvg-name="CCTV15" tvg-logo="https://epg.yang-1989.eu.org/logo/CCTV15.png" group-title="•央視「Relay」",CCTV 15 音樂「Relay」
-https://cdn.19891230.eu.org/api/CCTV15/index.m3u8
+#EXTINF:-1 tvg-name="CCTV1" group-title="mytv",CCTV1
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv1
+#EXTINF:-1 tvg-name="CCTV2" group-title="mytv",CCTV2
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv2
+#EXTINF:-1 tvg-name="CCTV3" group-title="mytv",CCTV3
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv3
+#EXTINF:-1 tvg-name="CCTV4" group-title="mytv",CCTV4
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv4
+#EXTINF:-1 tvg-name="CCTV5" group-title="mytv",CCTV5
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv5
+#EXTINF:-1 tvg-name="CCTV5" group-title="mytv",CCTV5
+https://cdn16.163189.xyz/163189/cctv5-2
+#EXTINF:-1 tvg-name="CCTV5+" group-title="mytv",CCTV5+
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv5p
+#EXTINF:-1 tvg-name="CCTV5+" group-title="mytv",CCTV5+
+https://cdn16.163189.xyz/163189/cctv5p-2
+#EXTINF:-1 tvg-name="CCTV6" group-title="mytv",CCTV6
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv6
+#EXTINF:-1 tvg-name="CCTV7" group-title="mytv",CCTV7
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv7
+#EXTINF:-1 tvg-name="CCTV8" group-title="mytv",CCTV8
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv8
+#EXTINF:-1 tvg-name="CCTV9" group-title="mytv",CCTV9
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv9
+#EXTINF:-1 tvg-name="CCTV10" group-title="mytv",CCTV10
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv10
+#EXTINF:-1 tvg-name="CCTV11" group-title="mytv",CCTV11
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv11
+#EXTINF:-1 tvg-name="CCTV12" group-title="mytv",CCTV12
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv12
+#EXTINF:-1 tvg-name="CCTV13" group-title="mytv",CCTV13
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv13
+#EXTINF:-1 tvg-name="CCTV14" group-title="mytv",CCTV14
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv14
+#EXTINF:-1 tvg-name="CCTV15" group-title="mytv",CCTV15
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv15
+#EXTINF:-1 tvg-name="CCTV16" group-title="mytv",CCTV16
+https://php.jdshipin.com/TVOD/iptv.php?id=cctv16
+#EXTINF:-1 tvg-name="CCTV16" group-title="mytv",CCTV16
+https://cdn16.163189.xyz/163189/cctv16-2
+#EXTINF:-1 tvg-name="CCTV17" group-title="mytv",CCTV17
