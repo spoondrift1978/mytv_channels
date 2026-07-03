@@ -6,9 +6,8 @@ import aiohttp
 # ==================== 配置区域 ====================
 SOURCES_LIST_FILE = "source_files.txt"
 OUTPUT_FILE = "live_active.m3u"
-TIMEOUT_SECONDS = 8  # 超过3秒未响应直接淘汰
-CONCURRENT_LIMIT = 3  # 并发限制
-MAX_SOURCES_PER_CHANNEL = 3  # 每个 tvg-name 最多保留的优质源数量
+TIMEOUT_SECONDS = 3       # 超过3秒未响应判定为死链
+CONCURRENT_LIMIT = 50     # 回退到高并发，只测生死，不测速度
 # ==================================================
 
 
@@ -55,11 +54,13 @@ def parse_flexible_m3u(content):
             current_extinf = line
         elif line.startswith(("http://", "https://", "rtmp://", "p2p://")):
             if current_extinf:
+                # 1. 提取频道名称（逗号后面的文字）
                 name_match = re.search(r",([^,]+)$", current_extinf)
                 name = (
                     name_match.group(1).strip() if name_match else "未知频道"
                 )
 
+                # 2. 提取各种属性
                 logo_match = re.search(r'tvg-logo="([^"]+)"', current_extinf)
                 group_match = re.search(
                     r'group-title="([^"]+)"', current_extinf
@@ -70,6 +71,8 @@ def parse_flexible_m3u(content):
 
                 logo = logo_match.group(1) if logo_match else ""
                 group = group_match.group(1) if group_match else "未分类"
+                
+                # 如果原文件自带 tvg-name 就用原文件的；如果没有，就用频道名称兜底
                 tvg_name = (
                     name_attr_match.group(1) if name_attr_match else name
                 )
@@ -81,33 +84,28 @@ def parse_flexible_m3u(content):
                         "logo": logo,
                         "group": group,
                         "tvg_name": tvg_name,
-                        "speed": 999.0,  # 初始响应时间设定为一个极大值
                     }
                 )
                 current_extinf = None
     return channels
 
 
-async def check_url_speed(session, semaphore, channel):
-    """测速核心函数：记录连接建立到响应所需的精确时间"""
+async def check_url_alive(session, semaphore, channel):
+    """回退到轻量级检测：只探测链接生死，不计算响应时间"""
     async with semaphore:
         url = channel["url"]
-        start_time = time.time()
         try:
             async with session.head(
                 url, timeout=TIMEOUT_SECONDS, allow_redirects=True
             ) as response:
                 if response.status == 200:
-                    channel["speed"] = time.time() - start_time
                     return channel
         except Exception:
             try:
-                # 如果 HEAD 请求不支持，退回到 GET 请求，只读取前几字节，防止拖慢速度
                 async with session.get(
                     url, timeout=TIMEOUT_SECONDS, allow_redirects=True
                 ) as response:
                     if response.status == 200:
-                        channel["speed"] = time.time() - start_time
                         return channel
             except Exception:
                 pass
@@ -142,7 +140,7 @@ async def main():
             print("❌ 所有订阅源均未解析出任何电视频道。")
             return
 
-        # 全局去重（避免完全一样的URL重复测速）
+        # 全局去重（避免完全一样的URL重复检测）
         seen_urls = set()
         unique_channels = []
         for ch in all_raw_channels:
@@ -151,40 +149,24 @@ async def main():
                 unique_channels.append(ch)
 
         print(
-            f"📦 汇总完毕！总计 {len(all_raw_channels)} 个源，去重后剩余 {len(unique_channels)} 个，开始进行精确时延测速..."
+            f"📦 汇总完毕！总计 {len(all_raw_channels)} 个源，去重后剩余 {len(unique_channels)} 个，开始高并发存活检测..."
         )
 
-        # 并发测速
+        # 并发检测
         tasks = [
-            check_url_speed(session, semaphore, ch) for ch in unique_channels
+            check_url_alive(session, semaphore, ch) for ch in unique_channels
         ]
         results = await asyncio.gather(*tasks)
 
-    # 过滤掉无法访问的死链
+    # 过滤出活着的频道
     active_channels = [ch for ch in results if ch is not None]
 
-    # --- 核心：按 tvg-name 分组并筛选前 3 名 ---
-    grouped_channels = {}
-    for ch in active_channels:
-        t_name = ch["tvg_name"]
-        if t_name not in grouped_channels:
-            grouped_channels[t_name] = []
-        grouped_channels[t_name].append(ch)
-
-    final_channels = []
-    for t_name, ch_list in grouped_channels.items():
-        # 按照 speed（响应延迟秒数）从小到大排序，越小代表速度越快
-        ch_list.sort(key=lambda x: x["speed"])
-        # 使用切片，只取前 MAX_SOURCES_PER_CHANNEL 个（如果少于3个则会全部保留）
-        top_sources = ch_list[:MAX_SOURCES_PER_CHANNEL]
-        final_channels.extend(top_sources)
-
-    # 6. 标准化写入输出文件（保留绑定的免费EPG）
+    # 标准化写入输出文件（保留绑定的免费EPG）
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(
             '#EXTM3U x-tvg-url="https://epg.112114.xyz/pp.xml,https://live.fanmingming.com/e.xml"\n'
         )
-        for ch in final_channels:
+        for ch in active_channels:
             name_str = f' tvg-name="{ch["tvg_name"]}"'
             logo_str = f' tvg-logo="{ch["logo"]}"' if ch["logo"] else ""
             group_str = (
@@ -195,12 +177,12 @@ async def main():
             )
 
     end_time = time.time()
-    print("--- 自动化精简筛选完成 ---")
+    print("--- 自动化生死筛选完成 ---")
     print(f"⏱️ 总耗时: {end_time - start_time:.2f} 秒")
     print(
-        f"📈 测速存活共 {len(active_channels)} 个源 | 优胜劣汰后最终保留: {len(final_channels)} 个源"
+        f"📈 原始去重源共 {len(unique_channels)} 个 | 存活保留: {len(active_channels)} 个"
     )
-    print(f"💾 最终高精简订阅文件已更新: {OUTPUT_FILE}")
+    print(f"💾 最终订阅文件已更新: {OUTPUT_FILE}")
 
 
 if __name__ == "__main__":
