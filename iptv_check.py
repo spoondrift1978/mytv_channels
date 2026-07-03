@@ -7,7 +7,7 @@ import aiohttp
 SOURCES_LIST_FILE = "source_files.txt"
 OUTPUT_FILE = "live_active.m3u"
 TIMEOUT_SECONDS = 8  # 超过3秒未响应直接淘汰
-CONCURRENT_LIMIT = 5  # 并发限制
+CONCURRENT_LIMIT = 3  # 并发限制
 MAX_SOURCES_PER_CHANNEL = 3  # 每个 tvg-name 最多保留的优质源数量
 # ==================================================
 
