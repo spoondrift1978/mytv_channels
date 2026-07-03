@@ -111,8 +111,12 @@ async def check_url(session, semaphore, channel):
 async def main():
     start_time = time.time()
     semaphore = asyncio.Semaphore(CONCURRENT_LIMIT)
+    # 模拟一个完全真实的 Chrome 浏览器请求头
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "Referer": "https://www.google.com/",
     }
 
     # 1. 从本地文本读取上游链接列表
