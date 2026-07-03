@@ -156,8 +156,10 @@ async def main():
     active_channels = [ch for ch in results if ch is not None]
 
     # 6. 标准化写入输出文件（把 tvg-name 拼装进去）
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        f.write("#EXTM3U\n")
+    # 6. 标准化写入输出文件（注入免费公开的 EPG 节目单接口）
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+        # 在头部直接绑定 EPG 链接，多个链接可以用逗号隔开
+        f.write('#EXTM3U x-tvg-url="https://epg.112114.xyz/pp.xml,https://live.fanmingming.com/e.xml"\n')
         for ch in active_channels:
             name_str = f' tvg-name="{ch["tvg_name"]}"'
             logo_str = f' tvg-logo="{ch["logo"]}"' if ch["logo"] else ""
