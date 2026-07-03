@@ -1,0 +1,44 @@
+name: 自动更新可用 IPTV 列表
+
+on:
+  schedule:
+    # 每天凌晨 4 点自动运行 (注：GitHub使用的是UTC标准时间，19:00 UTC = 北京时间 03:00)
+    - cron: '0 19 * * *'
+  workflow_dispatch: # 允许你在网页上点击按钮手动触发
+
+permissions:
+  contents: write # 赋予脚本向仓库写入/提交文件的权限
+
+jobs:
+  check_and_update:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 检出仓库代码
+      uses: actions/checkout@v4
+
+    - name: 设置 Python 环境
+      uses: actions/setup-python@v5
+      with:
+        python-node-version: '3.10'
+
+    - name: 安装 Python 依赖库
+      run: |
+        pip install aiohttp
+
+    - name: 执行 IPTV 检测脚本
+      run: |
+        python iptv_check.py
+
+    - name: 检查文件是否有变化并提交到仓库
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add live_active.m3u
+        # 只有在文件内容确实发生改变时才提交，防止死循环或报错
+        if git diff --staged --quiet; then
+          echo "列表没有发生变化，无需更新。"
+        else
+          git commit -m "自动更新: 剔除失效播放源 ($(date +'%Y-%m-%d %H:%M:%S'))"
+          git push
+        fi
