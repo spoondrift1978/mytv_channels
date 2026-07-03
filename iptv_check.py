@@ -5,7 +5,7 @@ import aiohttp
 
 # ==================== 配置区域 ====================
 SOURCES_LIST_FILE = "source_files.txt"
-OUTPUT_FILE = "live_active.m3u"
+OUTPUT_FILE = "GNTV.m3u"
 TIMEOUT_SECONDS = 3       # 超过3秒未响应判定为死链
 CONCURRENT_LIMIT = 50     # 回退到高并发，只测生死，不测速度
 # ==================================================
