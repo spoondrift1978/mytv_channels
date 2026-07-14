@@ -29,6 +29,10 @@
       "url": "https://6800.kstore.vip/fish.json"
     },
     {
+      "name": "游魂",
+      "url": "https://www.iyouhun.com/tv/dc"
+    },
+    {
       "name": "alan",
       "url": "https://raw.githubusercontent.com/alantang1977/X/refs/heads/main/X.json"
     }
