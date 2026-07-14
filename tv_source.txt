@@ -1,0 +1,36 @@
+{
+  "urls": [
+    {
+      "name": "饭太硬",
+      "url": "http://www.饭太硬.net/tv"
+    },
+    {
+      "name": "肥猫",
+      "url": "http://肥猫.net/"
+    },
+    {
+      "name": "iptv365",
+      "url": "https://play.iptv365.org/饭太硬/api.json"
+    },
+    {
+      "name": "南风",
+      "url": "https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json"
+    },
+    {
+      "name": "香雅情",
+      "url": "https://raw.githubusercontent.com/xyq254245/xyqonlinerule/main/XYQTVBox.json"
+    },
+    {
+      "name": "摸鱼儿",
+      "url": "http://www.小不点.com"
+    },
+    {
+      "name": "凯速",
+      "url": "https://6800.kstore.vip/fish.json"
+    },
+    {
+      "name": "alan",
+      "url": "https://raw.githubusercontent.com/alantang1977/X/refs/heads/main/X.json"
+    }
+  ]
+}
