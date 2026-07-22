@@ -10,7 +10,7 @@
     },
     {
       "name": "iptv365",
-      "url": "https://play.iptv365.org/饭太硬/api.json"
+      "url": "https://play.iptv365.org/tvbox.txt"
     },
     {
       "name": "南风",
