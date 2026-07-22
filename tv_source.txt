@@ -45,10 +45,6 @@
 	  "url": "http://tvbox.王二小放牛娃.top"
 	},
     {
-	  "name": "gitoscc",
-	  "url": "https://raw.githubusercontent.com/gitoscc/maintv/refs/heads/main/x.json"
-	},
-    {
       "name": "alan",
       "url": "https://raw.githubusercontent.com/alantang1977/X/refs/heads/main/X.json"
     }
