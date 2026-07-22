@@ -10,7 +10,7 @@
     },
     {
       "name": "iptv365",
-      "url": "https://play.iptv365.org/tvbox.txt"
+      "url": "https://play.iptv365.org/饭太硬/api.json"
     },
     {
       "name": "南风",
@@ -46,7 +46,7 @@
 	},
     {
 	  "name": "gitoscc",
-	  "url": "https://raw.githubusercontent.com/gitoscc/maintv/main/x.json"
+	  "url": "https://raw.githubusercontent.com/gitoscc/maintv/refs/heads/main/x.json"
 	},
     {
       "name": "alan",
