@@ -33,6 +33,19 @@
       "url": "https://www.iyouhun.com/tv/dc"
     },
     {
+			"name": "EasyTV永久线路-org加速",
+			"url": "https://gh-proxy.org/raw.githubusercontent.com/EasyXC/EasyTVbox/main/easytv.jpg"
+		},
+    {
+			"name": "林中小屋",
+			"url": "https://gh-proxy.org/https://raw.githubusercontent.com/tushen6/Tattoo/refs/heads/main/OK/okys.json"
+		},
+
+		{
+			"name": "王二小放牛娃",
+			"url": "http://tvbox.王二小放牛娃.top"
+		},
+    {
       "name": "alan",
       "url": "https://raw.githubusercontent.com/alantang1977/X/refs/heads/main/X.json"
     }
