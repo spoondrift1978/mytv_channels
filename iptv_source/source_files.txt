@@ -1,3 +1,4 @@
 https://mytv.6665166.xyz/live.m3u
-https://raw.githubusercontent.com/spoondrift1978/mytv_channels/refs/heads/main/TV.m3u8
 https://cdn.qd.je/live.m3u
+https://raw.githubusercontent.com/spoondrift1978/mytv_channels/refs/heads/main/iptv_source/t_garysclub_top.m3u8
+https://raw.githubusercontent.com/spoondrift1978/mytv_channels/refs/heads/main/iptv_source/t_tvzby_top.m3u8
